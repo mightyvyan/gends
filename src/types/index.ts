@@ -13,6 +13,7 @@ export interface ProjectStore {
   projectName: string;
   uploadedTokens: FigmaToken[];
   tokenMapping: TokenMapping;
+  fontImportUrl: string;
   isLoading: boolean;
   error: string | null;
   
@@ -21,6 +22,7 @@ export interface ProjectStore {
   setUploadedTokens: (tokens: FigmaToken[]) => void;
   setTokenMapping: (mapping: TokenMapping) => void;
   updateTokenMapping: (tailwindToken: string, figmaToken: string) => void;
+  setFontImportUrl: (url: string) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   resetStore: () => void;
@@ -29,6 +31,8 @@ export interface ProjectStore {
 export interface GenerateProjectRequest {
   projectName: string;
   mapping: TokenMapping;
+  fontImportUrl?: string;
+  tokens: FigmaToken[];
 }
 
 export interface GenerateProjectResponse {

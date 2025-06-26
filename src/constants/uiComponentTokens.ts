@@ -14,7 +14,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Primary Button - Idle',
     description: 'Background color for primary buttons in their default state',
     category: 'Buttons',
-    defaultValue: 'blue-500',
+    defaultValue: 'color-blue-500',
     examples: ['Submit', 'Save', 'Continue']
   },
   {
@@ -22,7 +22,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Primary Button - Hover',
     description: 'Background color for primary buttons when hovered',
     category: 'Buttons',
-    defaultValue: 'blue-600',
+    defaultValue: 'color-blue-600',
     examples: ['Submit:hover', 'Save:hover']
   },
   {
@@ -30,7 +30,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Primary Button - Pressed',
     description: 'Background color for primary buttons when pressed/active',
     category: 'Buttons',
-    defaultValue: 'blue-700',
+    defaultValue: 'color-blue-700',
     examples: ['Submit:active', 'Save:active']
   },
   {
@@ -38,7 +38,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Primary Button - Disabled',
     description: 'Background color for disabled primary buttons',
     category: 'Buttons',
-    defaultValue: 'neutral-100',
+    defaultValue: 'color-gray-300',
     examples: ['Disabled submit button']
   },
   {
@@ -46,16 +46,8 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Primary Button - Text',
     description: 'Text color for primary buttons',
     category: 'Buttons',
-    defaultValue: 'neutral-0',
+    defaultValue: 'color-white-500',
     examples: ['Button label text']
-  },
-  {
-    id: 'primary-button-disabled-text',
-    name: 'Primary Button - Disabled Text',
-    description: 'Text color for disabled primary buttons',
-    category: 'Buttons',
-    defaultValue: 'neutral-400',
-    examples: ['Disabled button text']
   },
 
   // Secondary Button
@@ -64,7 +56,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Secondary Button - Idle',
     description: 'Background color for secondary buttons in their default state',
     category: 'Buttons',
-    defaultValue: 'neutral-0',
+    defaultValue: 'color-gray-100',
     examples: ['Cancel', 'Back', 'Skip']
   },
   {
@@ -72,7 +64,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Secondary Button - Hover',
     description: 'Background color for secondary buttons when hovered',
     category: 'Buttons',
-    defaultValue: 'neutral-50',
+    defaultValue: 'color-gray-200',
     examples: ['Cancel:hover', 'Back:hover']
   },
   {
@@ -80,7 +72,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Secondary Button - Pressed',
     description: 'Background color for secondary buttons when pressed',
     category: 'Buttons',
-    defaultValue: 'neutral-100',
+    defaultValue: 'color-gray-300',
     examples: ['Cancel:active', 'Back:active']
   },
   {
@@ -88,7 +80,7 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Secondary Button - Border',
     description: 'Border color for secondary buttons',
     category: 'Buttons',
-    defaultValue: 'neutral-300',
+    defaultValue: 'color-gray-400',
     examples: ['Outlined buttons']
   },
   {
@@ -96,25 +88,17 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Secondary Button - Text',
     description: 'Text color for secondary buttons',
     category: 'Buttons',
-    defaultValue: 'neutral-700',
+    defaultValue: 'color-gray-700',
     examples: ['Secondary button labels']
   },
 
   // Link Button
   {
-    id: 'link-button-background',
-    name: 'Link Button - Background',
-    description: 'Background color for link-style buttons',
-    category: 'Buttons',
-    defaultValue: 'transparent',
-    examples: ['Text links', 'Navigation links']
-  },
-  {
     id: 'link-button-text',
     name: 'Link Button - Text',
     description: 'Text color for link-style buttons',
     category: 'Buttons',
-    defaultValue: 'blue-500',
+    defaultValue: 'color-blue-500',
     examples: ['Learn more', 'View details']
   },
   {
@@ -122,191 +106,97 @@ export const UI_COMPONENT_TOKENS: UIComponentToken[] = [
     name: 'Link Button - Hover',
     description: 'Text color for link buttons when hovered',
     category: 'Buttons',
-    defaultValue: 'blue-600',
+    defaultValue: 'color-blue-600',
     examples: ['Link:hover state']
   },
 
-  // Form Inputs
+  // Text Input
   {
     id: 'text-input-background',
     name: 'Text Input - Background',
     description: 'Background color for text input fields',
-    category: 'Forms',
-    defaultValue: 'neutral-0',
+    category: 'Text Input',
+    defaultValue: 'color-white-500',
     examples: ['Email input', 'Name field', 'Search box']
   },
   {
     id: 'text-input-border',
     name: 'Text Input - Border',
     description: 'Border color for text input fields',
-    category: 'Forms',
-    defaultValue: 'neutral-300',
+    category: 'Text Input',
+    defaultValue: 'color-gray-300',
     examples: ['Input field borders']
   },
   {
     id: 'text-input-focus-border',
     name: 'Text Input - Focus Border',
     description: 'Border color for focused text input fields',
-    category: 'Forms',
-    defaultValue: 'blue-500',
+    category: 'Text Input',
+    defaultValue: 'color-blue-500',
     examples: ['Active input field']
   },
   {
     id: 'text-input-text',
     name: 'Text Input - Text',
     description: 'Text color for input field content',
-    category: 'Forms',
-    defaultValue: 'neutral-900',
+    category: 'Text Input',
+    defaultValue: 'color-gray-900',
     examples: ['User typed text']
   },
   {
     id: 'text-input-placeholder',
     name: 'Text Input - Placeholder',
     description: 'Color for placeholder text in input fields',
-    category: 'Forms',
-    defaultValue: 'neutral-400',
+    category: 'Text Input',
+    defaultValue: 'color-gray-400',
     examples: ['Enter your email...']
   },
 
-  // Navigation Tabs
+  // Radio Button
   {
-    id: 'tab-selected-background',
-    name: 'Tab - Selected Background',
-    description: 'Background color for the active/selected tab',
-    category: 'Navigation',
-    defaultValue: 'blue-500',
-    examples: ['Active tab in navigation']
+    id: 'radio-button-background',
+    name: 'Radio Button - Background',
+    description: 'Background color for radio button circles',
+    category: 'Radio',
+    defaultValue: 'color-white-500',
+    examples: ['Radio button background']
   },
   {
-    id: 'tab-selected-text',
-    name: 'Tab - Selected Text',
-    description: 'Text color for the active/selected tab',
-    category: 'Navigation',
-    defaultValue: 'neutral-0',
-    examples: ['Active tab label']
+    id: 'radio-button-border',
+    name: 'Radio Button - Border',
+    description: 'Border color for radio button circles',
+    category: 'Radio',
+    defaultValue: 'color-gray-300',
+    examples: ['Radio button outline']
   },
   {
-    id: 'tab-inactive-background',
-    name: 'Tab - Inactive Background',
-    description: 'Background color for inactive tabs',
-    category: 'Navigation',
-    defaultValue: 'neutral-100',
-    examples: ['Unselected tabs']
+    id: 'radio-button-selected',
+    name: 'Radio Button - Selected',
+    description: 'Color for selected radio button indicator',
+    category: 'Radio',
+    defaultValue: 'color-blue-500',
+    examples: ['Selected radio button dot']
   },
   {
-    id: 'tab-inactive-text',
-    name: 'Tab - Inactive Text',
-    description: 'Text color for inactive tabs',
-    category: 'Navigation',
-    defaultValue: 'neutral-600',
-    examples: ['Unselected tab labels']
+    id: 'radio-button-hover',
+    name: 'Radio Button - Hover',
+    description: 'Border color for radio buttons when hovered',
+    category: 'Radio',
+    defaultValue: 'color-blue-300',
+    examples: ['Radio button hover state']
   },
   {
-    id: 'tab-hover-background',
-    name: 'Tab - Hover Background',
-    description: 'Background color for tabs when hovered',
-    category: 'Navigation',
-    defaultValue: 'neutral-200',
-    examples: ['Tab hover state']
-  },
-
-  // Status Colors
-  {
-    id: 'success-background',
-    name: 'Success - Background',
-    description: 'Background color for success states and messages',
-    category: 'Status',
-    defaultValue: 'green-50',
-    examples: ['Success alerts', 'Completed states']
-  },
-  {
-    id: 'success-text',
-    name: 'Success - Text',
-    description: 'Text color for success messages',
-    category: 'Status',
-    defaultValue: 'green-700',
-    examples: ['Success message text']
-  },
-  {
-    id: 'success-border',
-    name: 'Success - Border',
-    description: 'Border color for success elements',
-    category: 'Status',
-    defaultValue: 'green-200',
-    examples: ['Success alert borders']
-  },
-  {
-    id: 'warning-background',
-    name: 'Warning - Background',
-    description: 'Background color for warning states and messages',
-    category: 'Status',
-    defaultValue: 'orange-50',
-    examples: ['Warning alerts', 'Caution states']
-  },
-  {
-    id: 'warning-text',
-    name: 'Warning - Text',
-    description: 'Text color for warning messages',
-    category: 'Status',
-    defaultValue: 'orange-700',
-    examples: ['Warning message text']
-  },
-  {
-    id: 'error-background',
-    name: 'Error - Background',
-    description: 'Background color for error states and messages',
-    category: 'Status',
-    defaultValue: 'red-50',
-    examples: ['Error alerts', 'Failed states']
-  },
-  {
-    id: 'error-text',
-    name: 'Error - Text',
-    description: 'Text color for error messages',
-    category: 'Status',
-    defaultValue: 'red-700',
-    examples: ['Error message text']
-  },
-
-  // General UI
-  {
-    id: 'page-background',
-    name: 'Page - Background',
-    description: 'Main background color for pages',
-    category: 'Layout',
-    defaultValue: 'neutral-0',
-    examples: ['Page background', 'Main content area']
-  },
-  {
-    id: 'card-background',
-    name: 'Card - Background',
-    description: 'Background color for cards and panels',
-    category: 'Layout',
-    defaultValue: 'neutral-0',
-    examples: ['Content cards', 'Modal backgrounds']
-  },
-  {
-    id: 'card-border',
-    name: 'Card - Border',
-    description: 'Border color for cards and panels',
-    category: 'Layout',
-    defaultValue: 'neutral-200',
-    examples: ['Card outlines', 'Panel borders']
-  },
-  {
-    id: 'divider-color',
-    name: 'Divider - Color',
-    description: 'Color for dividers and separators',
-    category: 'Layout',
-    defaultValue: 'neutral-200',
-    examples: ['Section dividers', 'List separators']
+    id: 'radio-button-text',
+    name: 'Radio Button - Text',
+    description: 'Text color for radio button labels',
+    category: 'Radio',
+    defaultValue: 'color-gray-700',
+    examples: ['Radio button label text']
   },
 ];
 
 export const UI_COMPONENT_CATEGORIES = [
   'Buttons',
-  'Forms',
-  'Navigation',
-  'Status',
-  'Layout',
+  'Text Input',
+  'Radio',
 ];

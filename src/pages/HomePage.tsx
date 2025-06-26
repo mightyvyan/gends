@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Sparkles, Upload, Zap, Palette, Code, Download } from 'lucide-react';
+import { ArrowRight, Sparkles, Upload, Zap, Palette, Code, Download, Type } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -19,7 +19,7 @@ const STEPS = [
   {
     id: 2,
     title: 'Token Mapping',
-    description: 'Map design tokens to Tailwind',
+    description: 'Map design tokens to components',
   },
   {
     id: 3,
@@ -34,12 +34,15 @@ export const HomePage: React.FC = () => {
     projectName,
     setProjectName,
     setUploadedTokens,
+    fontImportUrl,
+    setFontImportUrl,
     isLoading,
     setLoading,
     setError,
   } = useStore();
 
   const [localProjectName, setLocalProjectName] = React.useState(projectName);
+  const [localFontImportUrl, setLocalFontImportUrl] = React.useState(fontImportUrl);
   const [tokensUploaded, setTokensUploaded] = React.useState(false);
 
   const handleTokensParsed = React.useCallback((tokens: FigmaToken[]) => {
@@ -72,8 +75,9 @@ export const HomePage: React.FC = () => {
     }
 
     setProjectName(localProjectName.trim());
+    setFontImportUrl(localFontImportUrl.trim());
     navigate('/mapping');
-  }, [localProjectName, tokensUploaded, setProjectName, navigate, setError]);
+  }, [localProjectName, localFontImportUrl, tokensUploaded, setProjectName, setFontImportUrl, navigate, setError]);
 
   const canContinue = localProjectName.trim() && tokensUploaded && !isLoading;
 
@@ -108,7 +112,7 @@ export const HomePage: React.FC = () => {
               Transform your design tokens into production-ready design systems
             </p>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Seamlessly bridge the gap between design and development with intelligent token mapping and automated code generation
+              Focus on core components: Buttons, Text Inputs, and Radio buttons with intelligent token mapping
             </p>
           </div>
 
@@ -124,7 +128,7 @@ export const HomePage: React.FC = () => {
                 </span>
               </CardTitle>
               <CardDescription className="text-slate-400 text-lg">
-                Let's start by setting up your project and importing your design tokens
+                Set up your project with design tokens and typography
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-10 p-8">
@@ -144,6 +148,26 @@ export const HomePage: React.FC = () => {
                 />
                 <p className="text-slate-400">
                   This will be used as the name for your generated design system
+                </p>
+              </div>
+
+              {/* Font Import URL */}
+              <div className="space-y-4">
+                <Label htmlFor="fontImportUrl" className="text-lg font-semibold text-slate-200 flex items-center space-x-2">
+                  <Type className="h-5 w-5 text-purple-400" />
+                  <span>Google Fonts Import URL</span>
+                </Label>
+                <Input
+                  id="fontImportUrl"
+                  type="url"
+                  placeholder="@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');"
+                  value={localFontImportUrl}
+                  onChange={(e) => setLocalFontImportUrl(e.target.value)}
+                  className="h-14 text-lg bg-slate-800/50 border-slate-600 focus:border-purple-500 focus:ring-purple-500/20 text-slate-100 placeholder:text-slate-500 font-mono"
+                  disabled={isLoading}
+                />
+                <p className="text-slate-400">
+                  Optional: Add a Google Fonts @import URL to include custom typography in your design system
                 </p>
               </div>
 
@@ -173,7 +197,7 @@ export const HomePage: React.FC = () => {
           </Card>
 
           {/* Features Preview */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <Card className="glass border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 group">
               <CardContent className="p-8 text-center">
                 <div className="relative mb-6">
@@ -182,9 +206,9 @@ export const HomePage: React.FC = () => {
                     <Code className="h-8 w-8 text-white" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-slate-200">CSS Import</h3>
+                <h3 className="text-xl font-semibold mb-3 text-slate-200">Buttons</h3>
                 <p className="text-slate-400 leading-relaxed">
-                  Simply paste your CSS custom properties and we'll automatically parse and categorize them
+                  Primary, secondary, and link button variants with hover and disabled states
                 </p>
               </CardContent>
             </Card>
@@ -194,12 +218,12 @@ export const HomePage: React.FC = () => {
                 <div className="relative mb-6">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
                   <div className="relative w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto">
-                    <Palette className="h-8 w-8 text-white" />
+                    <Type className="h-8 w-8 text-white" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-slate-200">Smart Mapping</h3>
+                <h3 className="text-xl font-semibold mb-3 text-slate-200">Text Inputs</h3>
                 <p className="text-slate-400 leading-relaxed">
-                  Map your design tokens to UI component states with intelligent suggestions and previews
+                  Styled input fields with focus states, borders, and placeholder text
                 </p>
               </CardContent>
             </Card>
@@ -212,42 +236,27 @@ export const HomePage: React.FC = () => {
                     <Zap className="h-8 w-8 text-white" />
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-slate-200">Instant Generation</h3>
+                <h3 className="text-xl font-semibold mb-3 text-slate-200">Radio Buttons</h3>
                 <p className="text-slate-400 leading-relaxed">
-                  Generate production-ready design system code with documentation and examples instantly
+                  Custom radio button components with selection and hover states
                 </p>
               </CardContent>
             </Card>
-          </div>
 
-          {/* Additional Features */}
-          <div className="mt-16 text-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="flex flex-col items-center space-y-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center">
-                  <Code className="h-6 w-6 text-blue-400" />
+            <Card className="glass border-slate-700/50 hover:border-pink-500/50 transition-all duration-300 group">
+              <CardContent className="p-8 text-center">
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-red-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+                  <div className="relative w-16 h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto">
+                    <Download className="h-8 w-8 text-white" />
+                  </div>
                 </div>
-                <span className="text-sm text-slate-400">TypeScript Ready</span>
-              </div>
-              <div className="flex flex-col items-center space-y-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center">
-                  <Palette className="h-6 w-6 text-purple-400" />
-                </div>
-                <span className="text-sm text-slate-400">Theme Support</span>
-              </div>
-              <div className="flex flex-col items-center space-y-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500/20 to-red-500/20 rounded-xl flex items-center justify-center">
-                  <Zap className="h-6 w-6 text-pink-400" />
-                </div>
-                <span className="text-sm text-slate-400">Fast Build</span>
-              </div>
-              <div className="flex flex-col items-center space-y-3">
-                <div className="w-12 h-12 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center">
-                  <Download className="h-6 w-6 text-emerald-400" />
-                </div>
-                <span className="text-sm text-slate-400">Export Ready</span>
-              </div>
-            </div>
+                <h3 className="text-xl font-semibold mb-3 text-slate-200">Export Ready</h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Production-ready code with TypeScript support and documentation
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

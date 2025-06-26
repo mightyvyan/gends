@@ -6,6 +6,7 @@ const initialState = {
   projectName: '',
   uploadedTokens: [],
   tokenMapping: {},
+  fontImportUrl: '',
   isLoading: false,
   error: null,
 };
@@ -35,6 +36,9 @@ export const useStore = create<ProjectStore>()(
           false,
           'updateTokenMapping'
         ),
+
+      setFontImportUrl: (url: string) =>
+        set({ fontImportUrl: url }, false, 'setFontImportUrl'),
 
       setLoading: (loading: boolean) =>
         set({ isLoading: loading }, false, 'setLoading'),

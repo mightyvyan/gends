@@ -29,8 +29,11 @@ export const CSSTokenInput: React.FC<CSSTokenInputProps> = ({ onTokensParsed, is
       
       if (match) {
         const [, name, value] = match;
-        const cleanName = name.trim();
+        let cleanName = name.trim();
         const cleanValue = value.trim();
+        
+        // Convert colour/colors to color and ensure proper format
+        cleanName = cleanName.replace(/colours?-/, 'color-');
         
         // Determine token type based on value
         let type = 'other';
@@ -80,7 +83,7 @@ export const CSSTokenInput: React.FC<CSSTokenInputProps> = ({ onTokensParsed, is
       <div className="space-y-4">
         <Label htmlFor="css-tokens" className="text-lg font-semibold text-slate-200 flex items-center space-x-2">
           <Code className="h-5 w-5 text-blue-400" />
-          <span>CSS Custom Properties</span>
+          <span>Theme Colours</span>
         </Label>
         
         <Card className="glass-dark border-slate-700/50 p-6">
@@ -89,11 +92,11 @@ export const CSSTokenInput: React.FC<CSSTokenInputProps> = ({ onTokensParsed, is
             placeholder="Paste your CSS custom properties here...
 
 Example:
---colours-neutral-900: #000000;
---colours-orange-500: #ED630D;
---colours-blue-500: #2563EB;
---radius-radius-md: 6;
---spacing-4: 16;"
+--color-neutral-900: #000000;
+--color-orange-500: #ED630D;
+--color-blue-500: #2563EB;
+--color-white-500: #FFFFFF;
+--color-gray-300: #D1D5DB;"
             value={cssInput}
             onChange={(e) => handleInputChange(e.target.value)}
             className="min-h-[300px] bg-slate-900/50 border-slate-600 focus:border-blue-500 focus:ring-blue-500/20 text-slate-100 placeholder:text-slate-500 font-mono text-sm resize-none"
@@ -102,7 +105,7 @@ Example:
         </Card>
         
         <p className="text-slate-400 text-sm">
-          Paste CSS custom properties in the format <code className="bg-slate-800 px-2 py-1 rounded text-slate-300">--property-name: value;</code>
+          Paste CSS custom properties in the format <code className="bg-slate-800 px-2 py-1 rounded text-slate-300">--color-name-shade: value;</code>
         </p>
       </div>
 

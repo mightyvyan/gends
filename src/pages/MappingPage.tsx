@@ -25,7 +25,7 @@ const STEPS = [
   {
     id: 2,
     title: 'Token Mapping',
-    description: 'Map design tokens to UI components',
+    description: 'Map design tokens to components',
   },
   {
     id: 3,
@@ -41,6 +41,7 @@ export const MappingPage: React.FC = () => {
     projectName,
     uploadedTokens,
     tokenMapping,
+    fontImportUrl,
     updateTokenMapping,
     setError,
   } = useStore();
@@ -66,6 +67,32 @@ export const MappingPage: React.FC = () => {
       ))
     );
   }, [uploadedTokens]);
+
+  // Auto-map tokens based on default values
+  React.useEffect(() => {
+    if (colorTokens.length > 0 && Object.keys(tokenMapping).length === 0) {
+      const autoMapping: { [key: string]: string } = {};
+      
+      UI_COMPONENT_TOKENS.forEach(uiToken => {
+        if (uiToken.defaultValue) {
+          // Find matching color token
+          const matchingToken = colorTokens.find(token => 
+            token.name === uiToken.defaultValue || 
+            token.name.includes(uiToken.defaultValue?.replace('color-', '') || '')
+          );
+          
+          if (matchingToken) {
+            autoMapping[uiToken.id] = matchingToken.name;
+          }
+        }
+      });
+      
+      // Apply auto-mapping
+      Object.entries(autoMapping).forEach(([uiTokenId, colorTokenName]) => {
+        updateTokenMapping(uiTokenId, colorTokenName);
+      });
+    }
+  }, [colorTokens, tokenMapping, updateTokenMapping]);
 
   // Generate project mutation
   const generateProjectMutation = useMutation({
@@ -133,11 +160,13 @@ export const MappingPage: React.FC = () => {
       await generateProjectMutation.mutateAsync({
         projectName,
         mapping: tokenMapping,
+        fontImportUrl,
+        tokens: uploadedTokens,
       });
     } finally {
       clearInterval(progressInterval);
     }
-  }, [projectName, tokenMapping, generateProjectMutation, toast, setError]);
+  }, [projectName, tokenMapping, fontImportUrl, uploadedTokens, generateProjectMutation, toast, setError]);
 
   const mappingProgress = React.useMemo(() => {
     const mapped = Object.keys(tokenMapping).length;
